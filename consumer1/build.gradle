@@ -1,0 +1,47 @@
+buildscript {
+  ext {
+    springBootVersion = '1.5.8.RELEASE'
+  }
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+  }
+}
+
+plugins {
+  id "au.com.dius.pact" version "3.4.0"
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  compile('org.springframework.boot:spring-boot-starter-web')
+  testCompile('org.springframework.boot:spring-boot-starter-test')
+  testCompile('au.com.dius:pact-jvm-consumer-junit_2.11:3.2.10')
+  testCompile('io.rest-assured:rest-assured:3.0.0')
+}
+
+test {
+  systemProperties['pact.rootDir'] = "$buildDir/pacts"
+}
+
+pact {
+  publish {
+    pactBrokerUrl = 'http://localhost'
+    pactBrokerUsername = 'shanelee007'
+    pactBrokerPassword = 'password123'
+    version = '1.0.0'
+  }
+}
