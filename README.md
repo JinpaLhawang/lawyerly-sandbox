@@ -67,3 +67,11 @@ cd edge1/
 # And in another terminal
 ./gradlew pactVerify
 ```
+
+## Pact Broker Usage
+
+### Deleting 'Pacticipants' and by extension, contracts
+
+```bash
+curl -X DELETE http://localhost/pacticipants/consumer1
+```

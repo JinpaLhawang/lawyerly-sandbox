@@ -1,0 +1,22 @@
+{
+  "name": "admin-ui-js",
+  "version": "1.0.0",
+  "description": "Javascript consumer for pact demo",
+  "main": "index.js",
+  "scripts": {
+    "test:pact:consumer": "./node_modules/.bin/mocha --timeout 10000",
+    "test:pact:publish": "node test/publish.js"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-as-promised": "^7.1.1",
+    "mocha": "^3.2.0",
+    "pact": "^2.6.0"
+  },
+  "dependencies": {
+    "superagent": "^3.3.2"
+  }
+}

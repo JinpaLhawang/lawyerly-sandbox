@@ -12,3 +12,12 @@
 1. Spring Cloud Contract seems a bit different, how could integrate?
 1. How best to do local development workflow?
 1. Integration with Swagger? Benefit to doing or better to keep modular and pipe together.
+
+Too easily publish from localhost to dev; could easily pollute contract pool
+Service naming guidelines
+Error Message matching seems too strict
+mvn publish fails if contracts not already created? Can wire phases together?
+Broker is slow and unresponsive; instance size too small?
+if developing provider, then just hit dev broker
+if developing consumer, then would instrument to read contracts from pacts directory
+Document Broker usage (ie how to delete pacticipants)
