@@ -2,9 +2,9 @@
 
 ## Setup
 
-### Terminal 1: Pact Broker
+### Pact Broker
 
-The Pact Broker runs continuously as a service.
+The Pact Broker runs continuously as a service on localhost.
 
 ```bash
 cd broker/
@@ -14,9 +14,11 @@ docker-compose up -d # -d for detached mode to keep broker running after closing
 
 ## Create and Publish Pacts to Pact Broker
 
-### Terminal 2: Build JVM Consumer and Publish Pact to Pact Broker
+### Build JVM Consumer and Publish Pact to Pact Broker
 
 JVM Consumers implement PactFragment classes to specify the expectation they have for services they rely on. Building will create these 'mocks' and gradle `pactPublish` will publish them to the Pact Broker. It is up to each consumer to update the Pact Broker with any expectations they have for services and to update the broker with changes to the pacts. This allows services to reach out to the broker and verify they continue to meet the pacts they have against them.
+
+#### Gradle
 
 ```bash
 cd consumer1/ # also consumer2
@@ -24,7 +26,14 @@ cd consumer1/ # also consumer2
 ./gradlew pactPublish # Publish Pacts to Pact Broker
 ```
 
-### Terminal 3: Build NodeJS Consumer and Publish Pact to Pact Broker
+#### Maven
+
+```bash
+./mvnw clean install # Build Service and Generate Pacts
+./mvnw pact:publish # Publish Pacts to Pact Broker
+```
+
+### Build NodeJS Consumer and Publish Pact to Pact Broker
 
 ```bash
 cd consumer3/ # also ui-js
