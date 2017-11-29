@@ -24,7 +24,7 @@ public class PreferencesMiddlePactTests {
   @Rule
   public PactProviderRule mockProvider = new PactProviderRule("preferences-middle-jvm", "localhost", 8080, this);
 
-  @Pact(provider = "preferences-middle-jvm", consumer = "account-edge-jvm")
+  @Pact(provider = "preferences-middle-jvm", consumer = "account-edge-jvm-mvn")
   public PactFragment createFragment(PactDslWithProvider builder) {
 
     final Map<String, String> headers = new HashMap<String, String>();

@@ -34,6 +34,7 @@ describe('Pact with account-edge-jvm', () => {
 
   describe('when a call to account-edge-jvm is made', () => {
     before(() => {
+      // The Contract
       return provider.addInteraction({
         uponReceiving: 'a request for account data',
         withRequest: {
@@ -53,6 +54,7 @@ describe('Pact with account-edge-jvm', () => {
       });
     });
 
+    // The Tests that run when AccountEdgeJVM runs ./gradlew pactVerify
     it('can process the data', done => {
       const response = fetchAccountData(ID);
 

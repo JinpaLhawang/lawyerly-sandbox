@@ -24,7 +24,8 @@ public class UserMiddlePactTests {
   @Rule
   public PactProviderRule mockProvider = new PactProviderRule("user-middle-jvm", "localhost", 8080, this);
 
-  @Pact(provider = "user-middle-jvm", consumer = "account-edge-jvm")
+  // Creates the JSON Pact File
+  @Pact(provider = "user-middle-jvm", consumer = "account-edge-jvm-mvn")
   public PactFragment createFragment(PactDslWithProvider builder) {
 
     final Map<String, String> headers = new HashMap<String, String>();
@@ -47,6 +48,7 @@ public class UserMiddlePactTests {
         toFragment();
   }
 
+  // Test is executed when UserMiddleJVM runs PactVerify
   @Test
   @PactVerification
   public void runTest() throws IOException {
