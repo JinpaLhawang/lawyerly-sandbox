@@ -74,13 +74,7 @@
         <configuration>
           <!-- Consumer -->
           <pactDirectory>${project.build.directory}/pacts</pactDirectory>
-          <pactBroker>
-            <url>http://localhost</url>
-            <authentication>
-              <username>shanelee007</username>
-              <password>password123</password>
-            </authentication>
-          </pactBroker>
+          <pactBrokerUrl>http://localhost</pactBrokerUrl>
           <!-- Provider -->
           <serviceProviders>
             <serviceProvider>
