@@ -47,16 +47,20 @@ JVM Consumers implement PactFragment classes to specify the expectation they hav
 
 ```bash
 cd $LAWYERLY_SANDBOX/orders-edge-jvm/
-./gradlew clean build # Build Service and Generate Pacts
-./gradlew pactPublish # Publish Pacts to Pact Broker
+# Build Service and Generate Contracts within `build/pacts/` directory
+./gradlew clean build
+# Publish Contracts to Pact Broker
+./gradlew pactPublish
 ```
 
 #### Maven
 
 ```bash
 cd $LAWYERLY_SANDBOX/account-edge-jvm-mvn/
-./mvnw clean install # Build Service and Generate Pacts
-./mvnw pact:publish # Publish Pacts to Pact Broker
+# Build Service and Generate Contracts within `target/pacts/` directory
+./mvnw clean install
+# Publish Contracts to Pact Broker
+./mvnw pact:publish
 ```
 
 ### Build NodeJS Consumer and Publish Pact to Pact Broker
@@ -64,8 +68,10 @@ cd $LAWYERLY_SANDBOX/account-edge-jvm-mvn/
 ```bash
 cd $LAWYERLY_SANDBOX/public-ui-js/
 npm install
-npm run test:pact:consumer # Generate Pact JSON files within pacts directory
-npm run test:pact:publish # Publish Pacts to Pact Broker
+# Generate Contract JSON files within `pacts/` directory
+npm run test:pact:consumer
+# Publish Contracts to Pact Broker
+npm run test:pact:publish
 ```
 
 ## Developing a Service that is an Endpoint Provider to Consumers
@@ -76,8 +82,10 @@ The service being developed/tested must be running for the pacts to be verified.
 
 ```bash
 cd $LAWYERLY_SANDBOX/user-middle-jvm/
-./gradlew clean build # Build Service
-./gradlew bootRun # Start Service
+# Build Service
+./gradlew clean build
+# Start Service
+./gradlew bootRun
 ```
 
 ### Verify Pacts from Pact Broker with Running Service
@@ -86,6 +94,7 @@ As changes are made, run gradle `pactVerify` to have the service reach out to th
 
 ```bash
 cd $LAWYERLY_SANDBOX/user-middle-jvm/
+# Call out to Pact Broker for all Contracts where is Provider and then Test against them
 ./gradlew pactVerify
 ```
 
