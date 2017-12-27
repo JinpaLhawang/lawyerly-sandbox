@@ -15,7 +15,7 @@ const LOG_LEVEL = process.env.LOG_LEVEL || 'WARN';
 
 const provider = pact({
   consumer: 'admin-ui-js',
-  provider: 'account-edge-jvm',
+  provider: 'account-edge-jvm-mvn',
   port: API_PORT,
   log: path.resolve(process.cwd(), 'logs', 'pact.log'),
   dir: path.resolve(process.cwd(), 'pacts'),
@@ -28,12 +28,12 @@ const PREFERENCE = { key: 'color', value: 'blue' };
 const PREFERENCE2 = { key: 'ui', value: 'admin' };
 const PREFERENCES = [ PREFERENCE, PREFERENCE2 ];
 
-describe('Pact with account-edge-jvm', () => {
+describe('Pact with account-edge-jvm-mvn', () => {
   before(() => {
     return provider.setup();
   });
 
-  describe('when a call to account-edge-jvm is made', () => {
+  describe('when a call to account-edge-jvm-mvn is made', () => {
     before(() => {
       return provider.addInteraction({
         uponReceiving: 'a request for account data',

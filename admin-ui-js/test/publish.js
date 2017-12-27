@@ -1,9 +1,8 @@
 const pact = require('@pact-foundation/pact-node');
 const path = require('path');
 const opts = {
-  pactUrls: [
-    path.resolve(__dirname, '../pacts/admin-ui-js-account-edge-jvm.json'),
-    path.resolve(__dirname, '../pacts/admin-ui-js-orders-edge-jvm.json')
+  pactFilesOrDirs: [
+    path.resolve(__dirname, '../pacts/')
   ],
   pactBroker: 'http://localhost',
   tags: ['prod', 'test'],
