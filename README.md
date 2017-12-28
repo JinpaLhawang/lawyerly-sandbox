@@ -80,6 +80,8 @@ npm run test:pact:publish
 
 The service being developed/tested must be running for the pacts to be verified. It is configured to run on port 8080. This service has the SpringBoot DevTools package included which enables the service to be reloaded when changes are made to the source during development.
 
+#### Gradle
+
 ```bash
 cd $LAWYERLY_SANDBOX/user-middle-jvm/
 # Build Service
@@ -88,14 +90,36 @@ cd $LAWYERLY_SANDBOX/user-middle-jvm/
 ./gradlew bootRun
 ```
 
+#### Maven
+
+```bash
+cd $LAWYERLY_SANDBOX/account-edge-jvm-mvn/
+# Build Service
+./mvnw install
+# Start Service
+./mvnw spring-boot:run
+```
+
 ### Verify Pacts from Pact Broker with Running Service
 
-As changes are made, run gradle `pactVerify` to have the service reach out to the Pact Broker to receive all the consumer pacts and verify the pacts are still being met.
+As changes are made, run pact verify to have the service reach out to the Pact Broker to receive all the consumer pacts and verify the pacts are still being met.
+
+#### Gradle
 
 ```bash
 cd $LAWYERLY_SANDBOX/user-middle-jvm/
 # Call out to Pact Broker for all Contracts where is Provider and then Test against them
 ./gradlew pactVerify
+```
+
+#### Maven
+
+NOTE: Currently `account-edge-jvm-mvn` requires the backing middle services to be running for the calls to work.
+
+```bash
+cd $LAWYERLY_SANDBOX/account-edge-jvm-mvn/
+# Call out to Pact Broker for all Contracts where is Provider and then Test against them
+./mvnw pact:verify
 ```
 
 ## Pact Broker Usage
