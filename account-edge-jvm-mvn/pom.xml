@@ -80,13 +80,7 @@
             <serviceProvider>
               <name>account-edge-jvm-mvn</name>
               <port>9106</port>
-              <pactBroker>
-                <url>http://localhost</url>
-                <authentication>
-                  <username>shanelee007</username>
-                  <password>password123</password>
-                </authentication>
-              </pactBroker>
+              <pactBrokerUrl>http://localhost</pactBrokerUrl>
             </serviceProvider>
           </serviceProviders>
         </configuration>
