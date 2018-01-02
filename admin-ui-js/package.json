@@ -18,5 +18,7 @@
   },
   "dependencies": {
     "superagent": "^3.3.2"
-  }
+  },
+  "repository": "https://github.com/JinpaLhawang/lawyerly-sandbox",
+  "license": "MIT"
 }
