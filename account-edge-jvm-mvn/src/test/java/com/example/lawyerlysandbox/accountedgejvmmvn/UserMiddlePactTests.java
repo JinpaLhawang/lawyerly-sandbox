@@ -33,7 +33,7 @@ public class UserMiddlePactTests {
 
     final PactDslJsonBody bodyResponse = new PactDslJsonBody().
         integerType("id", 2).
-        stringValue("name", "User");
+        stringType("name");
 
     return builder.
         uponReceiving("a request for User").
