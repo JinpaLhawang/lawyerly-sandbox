@@ -6,44 +6,38 @@ reset=`tput sgr0`
 
 echo ""; echo "${cyan}Building and Publishing Contracts to Broker...${reset}"
 
-set -x
+printTitle() {
+  echo ""; echo "${yellow}---"; echo "--- $1 ---"; echo "---${reset}"
+}
 
-echo ""; echo "${yellow}---"
-echo "--- account-edge-jvm-mvn ---"
-echo "---${reset}"
+printTitle account-edge-jvm-mvn
 cd account-edge-jvm-mvn/
-echo ""; echo "${cyan}Building Project and Generating Contracts where 'account-edge-jvm-mvn' is a Consumer...${reset}"
+echo "${cyan}Building Project and Generating Contracts where 'account-edge-jvm-mvn' is a Consumer...${reset}"
 ./mvnw clean install
 echo ""; echo "${cyan}Publishing Contracts where 'account-edge-jvm-mvn' is a Consumer...${reset}"
 ./mvnw pact:publish
+cd ..
 
-echo ""; echo "${yellow}---"
-echo "--- orders-edge-jvm ---"
-echo "---${reset}"
-cd ../orders-edge-jvm/
-echo ""; echo "${cyan}Building Project and Generating Contracts where 'orders-edge-jvm' is a Consumer...${reset}"
+printTitle orders-edge-jvm
+cd orders-edge-jvm/
+echo "${cyan}Building Project and Generating Contracts where 'orders-edge-jvm' is a Consumer...${reset}"
 ./gradlew clean build
 echo ""; echo "${cyan}Publishing Contracts where 'orders-edge-jvm' is a Consumer...${reset}"
 ./gradlew pactPublish
+cd ..
 
-echo ""; echo "${yellow}---"
-echo "--- public-ui-js ---"
-echo "---${reset}"
-cd ../public-ui-js/
-npm install
-echo ""; echo "${cyan}Generating Contracts where 'public-ui-js' is a Consumer...${reset}"
-npm run test:pact:consumer
-echo ""; echo "${cyan}Publishing Contracts where 'public-ui-js' is a Consumer...${reset}"
-npm run test:pact:publish
+npmGenerateAndPublishContracts() {
+  printTitle $1
+  cd $1
+  npm install
+  echo ""; echo "${cyan}Generating Contracts where '$1' is a Consumer...${reset}"
+  npm run test:pact:consumer
+  echo ""; echo "${cyan}Publishing Contracts where '$1' is a Consumer...${reset}"
+  npm run test:pact:publish
+  cd ..
+}
 
-echo ""; echo "${yellow}---"
-echo "--- admin-ui-js ---"
-echo "---${reset}"
-cd ../admin-ui-js/
-npm install
-echo ""; echo "${cyan}Generating Contracts where 'admin-ui-js' is a Consumer...${reset}"
-npm run test:pact:consumer
-echo ""; echo "${cyan}Publishing Contracts where 'admin-ui-js' is a Consumer...${reset}"
-npm run test:pact:publish
+npmGenerateAndPublishContracts public-ui-js
+npmGenerateAndPublishContracts admin-ui-js
 
 echo ""; echo "${cyan}Built and Published Contracts to Pact Broker at http://localhost.${reset}"
