@@ -6,6 +6,8 @@ reset=`tput sgr0`
 
 echo ""; echo "${cyan}Building and Publishing Contracts to Broker...${reset}"
 
+set -x
+
 echo ""; echo "${yellow}---"
 echo "--- account-edge-jvm-mvn ---"
 echo "---${reset}"
