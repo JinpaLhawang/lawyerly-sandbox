@@ -11,7 +11,6 @@ Ecosystem of Services for messing around with Consumer-Driven Contracts (CDC), C
 ```bash
 git clone [your fork]
 cd lawyerly-sandbox/
-export LAWYERLY_SANDBOX=$(pwd)
 ```
 
 ### Pact Broker
@@ -19,7 +18,7 @@ export LAWYERLY_SANDBOX=$(pwd)
 The Pact Broker runs continuously as a service on localhost. For this example, we'll deploy it locally in a Docker container (so make sure Docker is installed and running).
 
 ```bash
-cd $LAWYERLY_SANDBOX/broker/
+cd broker/
 docker-compose build # Build only needed on first setup
 docker-compose up -d # -d for detached mode to keep broker running after closing terminal
 ```
@@ -31,7 +30,6 @@ You can now access the Broker [locally](http://localhost). At first it will be e
 This script just iterates through the projects, building and publishing contracts to the broker. You can of course do this manually!
 
 ```bash
-cd $LAWYERLY_SANDBOX/
 ./setup.sh
 ```
 
@@ -46,7 +44,7 @@ JVM Consumers implement PactFragment classes to specify the expectation they hav
 #### Gradle
 
 ```bash
-cd $LAWYERLY_SANDBOX/orders-edge-jvm/
+cd orders-edge-jvm/
 # Build Service and Generate Contracts within `build/pacts/` directory
 ./gradlew clean build
 # Publish Contracts to Pact Broker
@@ -56,7 +54,7 @@ cd $LAWYERLY_SANDBOX/orders-edge-jvm/
 #### Maven
 
 ```bash
-cd $LAWYERLY_SANDBOX/account-edge-jvm-mvn/
+cd account-edge-jvm-mvn/
 # Build Service and Generate Contracts within `target/pacts/` directory
 ./mvnw clean install
 # Publish Contracts to Pact Broker
@@ -66,7 +64,7 @@ cd $LAWYERLY_SANDBOX/account-edge-jvm-mvn/
 ### Build NodeJS Consumer and Publish Pact to Pact Broker
 
 ```bash
-cd $LAWYERLY_SANDBOX/public-ui-js/
+cd public-ui-js/
 npm install
 # Generate Contract JSON files within `pacts/` directory
 npm run test:pact:consumer
@@ -83,7 +81,7 @@ The service being developed/tested must be running for the pacts to be verified.
 #### Gradle
 
 ```bash
-cd $LAWYERLY_SANDBOX/user-middle-jvm/
+cd user-middle-jvm/
 # Build Service
 ./gradlew clean build
 # Start Service
@@ -93,7 +91,7 @@ cd $LAWYERLY_SANDBOX/user-middle-jvm/
 #### Maven
 
 ```bash
-cd $LAWYERLY_SANDBOX/account-edge-jvm-mvn/
+cd account-edge-jvm-mvn/
 # Build Service
 ./mvnw install
 # Start Service
@@ -107,7 +105,7 @@ As changes are made, run pact verify to have the service reach out to the Pact B
 #### Gradle
 
 ```bash
-cd $LAWYERLY_SANDBOX/user-middle-jvm/
+cd user-middle-jvm/
 # Call out to Pact Broker for all Contracts where is Provider and then Test against them
 ./gradlew pactVerify
 ```
@@ -117,7 +115,7 @@ cd $LAWYERLY_SANDBOX/user-middle-jvm/
 NOTE: Currently `account-edge-jvm-mvn` requires the backing middle services to be running for the calls to work.
 
 ```bash
-cd $LAWYERLY_SANDBOX/account-edge-jvm-mvn/
+cd account-edge-jvm-mvn/
 # Call out to Pact Broker for all Contracts where is Provider and then Test against them
 ./mvnw pact:verify
 ```
